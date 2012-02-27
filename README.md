@@ -1,7 +1,7 @@
 ## Requirement
 
 * ruby
-* mechanize gem
+* mechanize gem ( $sudo gem install mechanize)
 
 * python 2.7
 
