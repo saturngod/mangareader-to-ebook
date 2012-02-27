@@ -5,6 +5,11 @@
 
 * python 2.7
 
+## Credit
+
+* [mdl.rb](https://github.com/lukaszkorecki/mdl)
+
+
 ## Download Images from mangareader.net
 
 	$ruby mdl.rb <OUTPUT DIR> <START URL>
