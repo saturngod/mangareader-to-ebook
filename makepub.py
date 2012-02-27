@@ -25,8 +25,8 @@ for infile in glob.glob( os.path.join(path, '*.'+ext)):
 	  content="application/xhtml+xml; charset=utf-8" />
     <title></title>
     </head>
-    <body>"""
-    img += "<img src=\""+imgfile+"\"/>"
+    <body style="padding:0px;margin:0px">"""
+    img += "<img style=\"width:auto;height:100%\" src=\""+imgfile+"\"/>"
     img += """
       </body>
 	</html>"""
