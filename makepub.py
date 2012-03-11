@@ -26,7 +26,7 @@ for infile in glob.glob( os.path.join(path, '*.'+ext)):
     <title></title>
     </head>
     <body style="padding:0px;margin:0px">"""
-    img += "<img style=\"width:auto;height:100%\" src=\""+imgfile+"\"/>"
+    img += "<img style=\"max-width:100%;max-height:100%\" src=\""+imgfile+"\"/>"
     img += """
       </body>
 	</html>"""
