@@ -1,26 +1,23 @@
 ## Requirement
 
-* ruby
-* mechanize gem ( $sudo gem install mechanize)
-
 * python 2.7
 
 ## Credit
 
-* [mdl.rb](https://github.com/lukaszkorecki/mdl)
+* mdl.py is base on [mdl.rb](https://github.com/lukaszkorecki/mdl)
 
 
 ## Download Images from mangareader.net
 
-	$ruby mdl.rb <OUTPUT DIR> <START URL>
+	$ruby mdl.py <START URL> <OUTPUT DIR> 
 
 Example :
 
-	$ruby mdl.rb Bleach http://www.mangareader.net/bleach/482
+	$python mdl.py http://www.mangareader.net/bleach/482 Bleach
 
 OR :
 
-	$ruby mdl.rb ./ http://www.mangareader.net/bleach/482
+	$ruby mdl.py http://www.mangareader.net/bleach/482 ./
 
 ## Make epub
 
