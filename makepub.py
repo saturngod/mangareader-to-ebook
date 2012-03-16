@@ -1,4 +1,6 @@
-import os,glob,sys,shutil,datetime,zipfolder
+import os,glob,sys,shutil,datetime
+
+from module import zipfolder
 
 if len(sys.argv) < 3:
 	print "makeepub.py [folder] [image filetype]"
@@ -51,6 +53,8 @@ f.close()
 title = path
 if(title[-1:]=="/"):
 	title = title[:len(title)-1]
+
+title = title.replace("/","-")
 
 opf = """<?xml version='1.0' encoding='utf-8'?>
 <package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="uuid_id">
@@ -140,6 +144,8 @@ if not os.path.exists("./output"):
 
 #zip it
 zipfolder.zipper("./epubtmp","output/"+title+".epub")
+
+print "Output file at output/"+title+".epub"
 
 #remove Dir
 shutil.rmtree("./epubtmp")

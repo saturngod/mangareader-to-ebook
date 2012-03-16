@@ -1,6 +1,6 @@
 import sys,urllib2,os,httplib,glob,shutil
 from urllib import urlretrieve
-import BeautifulSoup
+from module import BeautifulSoup
 
 def cleanup(dirname):
 	for jpgFile in glob.glob(os.path.join(dirname, '*.jpg')):

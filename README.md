@@ -1,3 +1,5 @@
+Mangareader to ebooks support epub and pdf format.
+
 ## Requirement
 
 * python 2.7
@@ -25,6 +27,14 @@ OR :
 
 Example :
 
-	$python makepub.py Bleach_482/ jpg
+	$python makepub.py Bleach_482 jpg
 
 You will get epub file in output folder
+
+## Make PDF
+
+	$python makePDF.py <dir> <image format>
+	
+Example :
+
+	$python makePDF.py Bleach_482 jpg
