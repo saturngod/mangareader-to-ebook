@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="uuid_id">
+  <metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:language>en</dc:language>
+  <dc:identifier id="PrimaryID">urn:uuid:00000000-0000-0000-0000-000000000000</dc:identifier>
+  <dc:creator>SGepub Convertor</dc:creator>
+  <dc:title>TITLE</dc:title>
+  <dc:date>DATE</dc:date>
+  </metadata>
+  <manifest>
+  <item id="ncx" href="content.ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+  </spine>
+</package>
