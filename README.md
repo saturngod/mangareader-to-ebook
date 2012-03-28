@@ -9,7 +9,6 @@ Mangareader to ebooks support epub and pdf format.
 
 * mdl.py is base on [mdl.rb](https://github.com/lukaszkorecki/mdl)
 
-
 ## Download Images from mangareader.net
 
 	$ruby mdl.py <START URL> <OUTPUT DIR> 
@@ -18,7 +17,7 @@ Example :
 
 	$python mdl.py http://www.mangareader.net/bleach/482 Bleach
 
-OR :
+or
 
 	$ruby mdl.py http://www.mangareader.net/bleach/482 ./
 
@@ -38,23 +37,26 @@ or
 
 You will get epub file in output folder
 
+
+You can provide multiple folders :
+
     $python makepub.py Bleach_480 Bleach_481 Bleach_482
 
-You can provide multiple folders or (linux only) :
+or even (linux only) :
 
     $python makepub.py Bleach/*/
 
 Bleach/ being the folder containing chapter folders
 
+
 You can resize images to fit your e-reader resolution with --resize width height
 
 Example for a kobo touch:
 
-    $python makepub.py Bleach_480 Bleach_481 Bleach_482 --resize 600 800
+    $python makepub.py Bleach_482 --resize 600 800
 
 Use this to get best quality when your e-reader has lower resolution than original image's
 Only available with jpg image format
-
 
 ## Make PDF
 
