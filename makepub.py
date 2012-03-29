@@ -31,7 +31,7 @@ else:
 
 if options.resize:
     try:
-        __import__(Image)
+        import Image
     except ImportError:
         print "Python Image Library not installed. Install it with your package manager or download it at http://effbot.org/downloads/#pil"
         sys.exit()
@@ -126,7 +126,7 @@ def make_opf(title, ext, page_no):
 
 
 # make epub(s)
-for path in sorted(paths):
+for path in paths:
     print "Copying Files to Tmp Dir..."
     if os.path.exists("./epubtmp"):
         shutil.rmtree("./epubtmp")
