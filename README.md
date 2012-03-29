@@ -58,6 +58,7 @@ Example for a kobo touch:
 Use this to get best quality when your e-reader has lower resolution than original image's
 Only available with jpg image format
 
+
 ## Make PDF
 
 	$python makePDF.py <dir> <image format>
