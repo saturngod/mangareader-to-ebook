@@ -14,7 +14,7 @@ Credit
 Download Images from mangareader.net
 ====================================
 
-	$ruby mdl.py <START URL> <OUTPUT DIR> 
+	$python mdl.py <START URL> <OUTPUT DIR> 
 
 Example :
 
@@ -22,7 +22,7 @@ Example :
 
 or
 
-	$ruby mdl.py http://www.mangareader.net/bleach/482 ./
+	$python mdl.py http://www.mangareader.net/bleach/482 ./
 
 Make epub
 =========
