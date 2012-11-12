@@ -41,7 +41,7 @@ def getit(dirname,target_url):
 		if not os.path.exists(dirname+"/"+chapter+"-"+name):
 			urlretrieve(url, dirname+"/"+chapter+"-"+name)
 
-		getit(dirname,next_url)
+		return next_url
 
 	except urllib2.URLError, e:
 		print ">>> Fail at "+target_url
@@ -53,5 +53,6 @@ def getit(dirname,target_url):
 		print ">>> Start cleaning"
 		cleanup(dirname)
 
-
-getit(sys.argv[2],sys.argv[1])
+nexturl = sys.argv[1]
+while nexturl:
+	nexturl = getit(sys.argv[2],nexturl)
