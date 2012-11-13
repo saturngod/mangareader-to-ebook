@@ -16,9 +16,10 @@ print "Reading Path : " + path
 
 parts = []
 
-title = path
-if(title[-1:]=="/"):
-    title = title[:len(title)-1]
+title = os.path.abspath(path)
+
+title = os.path.basename(os.path.dirname(title)) + \
+        "-" + os.path.basename(title)
 
 title = title.replace("/","-")
 
