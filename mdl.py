@@ -23,13 +23,26 @@ def getit(dirname,target_url):
 		response = urllib2.urlopen(req)
 		the_page = response.read()
 
-		soup = BeautifulSoup.BeautifulSoup(the_page)
-		imgholder = soup.find("div", attrs={"align": "center"}).find('a')
-		next_url = "http://ecchi-manga.net"
-		next_url += imgholder['href'];
 
-		url = soup.find("div", attrs={"align": "center"}).find('img')
+		soup = BeautifulSoup.BeautifulSoup(the_page)
+		
+		ecchi_manga = "ecchi-manga"
+		result = target_url.find(ecchi_manga);
+		
+		if result != -1:
+			imgholder = soup.find("div", attrs={"align": "center"}).find('a')
+			next_url = "http://ecchi-manga.net"
+			url = soup.find("div", attrs={"align": "center"}).find('img')
+		
+		imgholder = soup.find("div", attrs={"id": "imgholder"}).find('a')
+		next_url = "http://www.mangareader.net"
+		url = soup.find("div", attrs={"id": "imgholder"}).find('img')
+
+
+		next_url += imgholder['href'];
 		url = url['src']
+
+
 
 		lnk = url.split("/")
 		name = lnk[-1]
