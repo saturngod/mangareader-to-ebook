@@ -24,11 +24,11 @@ def getit(dirname,target_url):
 		the_page = response.read()
 
 		soup = BeautifulSoup.BeautifulSoup(the_page)
-		imgholder = soup.find("div", attrs={"id": "imgholder"}).find('a')
-		next_url = "http://www.mangareader.net"
+		imgholder = soup.find("div", attrs={"align": "center"}).find('a')
+		next_url = "http://ecchi-manga.net"
 		next_url += imgholder['href'];
 
-		url = soup.find("div", attrs={"id": "imgholder"}).find('img')
+		url = soup.find("div", attrs={"align": "center"}).find('img')
 		url = url['src']
 
 		lnk = url.split("/")
