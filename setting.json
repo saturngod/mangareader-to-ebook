@@ -1,0 +1,41 @@
+[
+	{
+		"url": "http://www.ecchi-manga.net",
+		"image": {
+			"parent": "div",
+			"target": "a",
+			"attr": {"align": "center"}
+		},
+		"next": {
+			"parent": "div",
+			"target": "img",
+			"attr": {"align": "center"}
+		}
+	},
+	{
+		"url": "http://www.mangareader.net",
+		"image": {
+			"parent": "div",
+			"target": "a",
+			"attr": {"id": "imgholder"}
+		},
+		"next": {
+			"parent": "div",
+			"target": "img",
+			"attr": {"id": "imgholder"}
+		}
+	},
+	{
+		"url": "http://www.mangahere.com",
+		"image": {
+			"parent": "section",
+			"target": "a",
+			"attr": {"id": "viewer"}
+		},
+		"next": {
+			"parent": "section",
+			"target": "img",
+			"attr": {"id": "viewer"}
+		}
+	}	
+]
