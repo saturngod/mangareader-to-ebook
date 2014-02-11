@@ -15,33 +15,15 @@ def cleanup(dirname):
 
 	print ">>> Done"
 
-def getit(dirname,target_url):
+def getit(dirname,target_url,setting):
 
 	print ">>> " + target_url
 	try:
-		setting = {}
 		req = urllib2.Request(target_url)
 		response = urllib2.urlopen(req)
 		the_page = response.read()
 
-		host = target_url.split('/')
-		hostnameWithoutWWW = host[0] + "//" + host[2]
-		hostnameWithWWW = host[0] + "//" + host[2]
-
 		soup = BeautifulSoup.BeautifulSoup(the_page)
-
-		json_data=open('setting.json')
-		data = json.load(json_data)
-		for x in data:
-			if x["url"]  == hostnameWithoutWWW or x["url"]  == hostnameWithWWW:
-				setting = x
-				break
-
-		json_data.close()
-		
-		if len(setting) == 0:
-			print ">>> Site not found in setting file, Fail"
-			return False
 	
 		imgholder = soup.find(setting["image"]["parent"], attrs=setting["image"]["attr"]).find(setting["image"]["target"])
 		next_url = setting["url"]
@@ -78,5 +60,26 @@ def getit(dirname,target_url):
 		cleanup(dirname)
 
 nexturl = sys.argv[1]
+
+host = nexturl.split('/')
+hostnameWithoutWWW = host[0] + "//" + host[2]
+hostnameWithWWW = host[0] + "//" + host[2]
+
+setting = {}
+
+json_data=open('setting.json')
+data = json.load(json_data)
+
+for x in data:
+	if x["url"]  == hostnameWithoutWWW or x["url"]  == hostnameWithWWW:
+		setting = x
+		break
+
+json_data.close()
+
+if len(setting) == 0:
+	print ">>> Site not found in setting file, Fail"
+	exit
+
 while nexturl:
-	nexturl = getit(sys.argv[2],nexturl)
+	nexturl = getit(sys.argv[2],nexturl,setting)
