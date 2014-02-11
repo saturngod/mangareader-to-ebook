@@ -1,6 +1,7 @@
-import sys,urllib2,os,httplib,glob,shutil
+import sys,urllib2,os,httplib,glob,shutil,json
 from urllib import urlretrieve
 from module import BeautifulSoup
+from pprint import pprint
 
 def cleanup(dirname):
 	for jpgFile in glob.glob(os.path.join(dirname, '*.jpg')):
@@ -19,35 +20,46 @@ def getit(dirname,target_url):
 
 	print ">>> " + target_url
 	try:
+		setting = {}
 		req = urllib2.Request(target_url)
 		response = urllib2.urlopen(req)
 		the_page = response.read()
 
+		host = target_url.split('/')
+		hostnameWithoutWWW = host[0] + "//" + host[2]
+		hostnameWithWWW = host[0] + "//" + host[2]
 
 		soup = BeautifulSoup.BeautifulSoup(the_page)
-		
-		ecchi_manga = "ecchi-manga"
-		result = target_url.find(ecchi_manga);
-		
-		if result != -1:
-			imgholder = soup.find("div", attrs={"align": "center"}).find('a')
-			next_url = "http://ecchi-manga.net"
-			url = soup.find("div", attrs={"align": "center"}).find('img')
-		
-		imgholder = soup.find("div", attrs={"id": "imgholder"}).find('a')
-		next_url = "http://www.mangareader.net"
-		url = soup.find("div", attrs={"id": "imgholder"}).find('img')
 
+		json_data=open('setting.json')
+		data = json.load(json_data)
+		for x in data:
+			if x["url"]  == hostnameWithoutWWW or x["url"]  == hostnameWithWWW:
+				setting = x
+				break
 
-		next_url += imgholder['href'];
+		json_data.close()
+		
+		if len(setting) == 0:
+			print ">>> Site not found in setting file, Fail"
+			return False
+	
+		imgholder = soup.find(setting["image"]["parent"], attrs=setting["image"]["attr"]).find(setting["image"]["target"])
+		next_url = setting["url"]
+		url = soup.find(setting["next"]["parent"], attrs=setting["next"]["attr"]).find(setting["next"]["target"])
+
+		if imgholder['href'].startswith("http") or imgholder['href'].startswith("www"):
+			next_url = imgholder['href']
+		else :
+			next_url += imgholder['href']
+		
 		url = url['src']
-
-
+		
 
 		lnk = url.split("/")
 		name = lnk[-1]
 		chapter = lnk[-2]
-		
+
 		if not os.path.exists(dirname):
 			os.makedirs(dirname)
 
@@ -62,7 +74,7 @@ def getit(dirname,target_url):
 		cleanup(dirname)
 
 	except httplib.InvalidURL , e:
-		print ">>> Fail at "+target_url
+		print ">>> Invalid url, Fail at "+target_url
 		print ">>> Start cleaning"
 		cleanup(dirname)
 
