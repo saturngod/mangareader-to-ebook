@@ -1,5 +1,6 @@
 import sys,urllib2,os,httplib,glob,shutil,json
 from urllib import urlretrieve
+from urlparse import urlparse
 from module import BeautifulSoup
 
 def cleanup(dirname):
@@ -29,10 +30,20 @@ def getit(dirname,target_url,setting):
 		next_url = setting["url"]
 		url = soup.find(setting["next"]["parent"], attrs=setting["next"]["attr"]).find(setting["next"]["target"])
 
-		if imgholder['href'].startswith("http") or imgholder['href'].startswith("www"):
-			next_url = imgholder['href']
-		else :
+		if imgholder['href'] == 'javascript:void(0);':
+			exit(0)
+
+		href_parser = urlparse(imgholder['href'])
+		count = len(href_parser.path.split('/')) # if href is relative path like 1.html
+		if count == 1:
+			target_url_parser = urlparse(target_url)
+			segment = target_url_parser.path.split('/')
+			segment[-1] = imgholder['href'] # replace last segment with next url
+			next_url += "/".join(segment)
+		elif count > 1 and href_parser.netloc == '' : # if href is relative path like /manga/01/1.html
 			next_url += imgholder['href']
+		else : # if href is absolute url
+			next_url = imgholder['href']
 		
 		url = url['src']
 		
@@ -63,7 +74,7 @@ nexturl = sys.argv[1]
 
 host = nexturl.split('/')
 hostnameWithoutWWW = host[0] + "//" + host[2]
-hostnameWithWWW = host[0] + "//" + host[2]
+hostnameWithWWW = host[0] + "//www." + host[2]
 
 setting = {}
 
@@ -80,6 +91,6 @@ json_data.close()
 if len(setting) == 0:
 	print ">>> Site not found in setting file, Fail"
 	exit
-
-while nexturl:
-	nexturl = getit(sys.argv[2],nexturl,setting)
+else:
+	while nexturl:
+		nexturl = getit(sys.argv[2],nexturl,setting)
