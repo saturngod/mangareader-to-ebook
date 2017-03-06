@@ -1,7 +1,10 @@
 import sys,urllib2,os,httplib,glob,shutil,json
-from urllib import urlretrieve
+import urllib
 from urlparse import urlparse
 from module import BeautifulSoup
+
+# pass the cloudflare with browser information
+urllib.URLopener.version = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36 SE 2.X MetaSr 1.0'
 
 def cleanup(dirname):
 	for jpgFile in glob.glob(os.path.join(dirname, '*.jpg')):
@@ -56,7 +59,7 @@ def getit(dirname,target_url,setting):
 			os.makedirs(dirname)
 
 		if not os.path.exists(dirname+"/"+chapter+"-"+name):
-			urlretrieve(url, dirname+"/"+chapter+"-"+name)
+			urllib.urlretrieve(url, dirname+"/"+chapter+"-"+name)
 
 		return next_url
 
